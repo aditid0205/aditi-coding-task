@@ -10,16 +10,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 public class Main {
     public static void main(String[] args) {
+        final Logger logger = Logger.getLogger(Main.class);
+
         List<String> lines =new ArrayList<>();
         try
         {
             lines = new FileReadHelper().readFile(ApplicationConstant.file_path);
         }
-        catch(IOException e)``````````````````````
+        catch(IOException e)
         {
-            // add catch logic
+            logger.error("Error reading file", e);
         }
         List<LogEntry> logEntries = new LogParser().parseLog(lines);
         LogAnalyzer logAnalyzer = new LogAnalyzer(logEntries);
